@@ -10,8 +10,6 @@
   },
   "dependencies": {},
   "scripts": {
-    "test": "mocha",
-    "start": "webpack --watch",
     "build": "webpack"
   },
   "author": {
