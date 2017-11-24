@@ -57,5 +57,5 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root'))
 ```
-* Use `norender` if you will render the children component on wrapper component in some part of your component, otherwise the child component will render automaticaly. if your child component like Modal, Popup ..etc or any absolute component no need to use `norender`.
+* Use __`norender`__ if you will render the children component on wrapper component in some part of your component, otherwise the child component will render automaticaly. if your child component like Modal, Popup ..etc or any absolute component no need to use __`norender`__.
 
