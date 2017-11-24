@@ -4,10 +4,15 @@
 
 Make nested route simple and reusable.
 
-## Install
+## Install via NPM
 
 ```sh
 $ npm install --save react-nested-route
+```
+## Install via Yarn
+
+```sh
+$ yarn add react-nested-route
 ```
 
 ## Full example
