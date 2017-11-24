@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.org/binothman/react-nested-route.svg?branch=master)](https://travis-ci.org/binothman/react-nested-route)
 
-Make nested route simple and reusable.
+Make nested route simple and useful.
+This package helping you to create nested route in a simple way. render your sub-component directly when router URL call without write any specific code, just declare Parent and Childern router and will render automaticaly.
+
 
 ## Install via NPM
 
@@ -14,6 +16,16 @@ $ npm install --save react-nested-route
 ```sh
 $ yarn add react-nested-route
 ```
+
+## Usage
+```js
+<NestedRoute path="/main" component={MainContainer}>
+  <SubRoute path="/sub1" component={SubComponent1} norender />
+  <SubRoute path="/sub3" component={SubComponent2} norender />
+  <SubRoute path="/sub3" component={SubComponent3} norender />
+</NestedRoute>
+```
+
 
 ## Full example
 
