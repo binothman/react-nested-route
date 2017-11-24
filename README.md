@@ -22,11 +22,18 @@ $ yarn add react-nested-route
 import { NestedRoute, SubRoute } from 'react-nested-route'
 
 
-<NestedRoute path="/main" component={MainContainer}> // http://yoursite/main
-  <SubRoute path="/sub1" component={SubComponent1} norender /> // http://yoursite/main/sub1
-  <SubRoute path="/sub3" component={SubComponent2} norender /> // http://yoursite/main/sub2
-  <SubRoute path="/sub3" component={SubComponent3} norender /> // http://yoursite/main/sub3
+<NestedRoute path="/main" component={MainContainer}> 
+  <SubRoute path="/sub1" component={SubComponent1} norender /> 
+  <SubRoute path="/sub3" component={SubComponent2} norender /> 
+  <SubRoute path="/sub3" component={SubComponent3} norender /> 
 </NestedRoute>
+
+/* URLs Examples
+* - http://yoursite/main
+* - http://yoursite/main/sub1
+* - http://yoursite/main/sub2
+* - http://yoursite/main/sub3
+*/
 ```
 
 
