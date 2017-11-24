@@ -7,65 +7,65 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
+// render children Route
+function childrenRender (path, childrens){
+  let result = []
+  let childrenArr = childrens.length
+      ? childrens
+      : [childrens]
+
+  childrenArr.map(child =>
+    result.push(
+      <Route
+        key={`nested-route-child-${Math.random()}`}
+        path={`${path}${child.props.path}`}
+        component={child.props.component}
+      />
+    )
+  )
+
+  return result
+}
+
+function getCurrentChild(props){
+  const { computedMatch, children, location, path } = props
+  const { isExact } = computedMatch
+  if(isExact){
+    return null
+  }else if(children.length){
+    const activeRoute = location.pathname.replace(path, '')
+    const activeChild = children.filter(ch => ch.props.path === activeRoute)[0]
+    if(activeChild.props.norender) return null
+    return activeChild
+  }else{
+    if(children.props.render) return null
+    return children
+  }
+}
+
+function WrapperRender (props){
+  const { component, children, path } = props
+  const WrapperComponent = component
+  const WrapperChildren = getCurrentChild(props)
+  return(
+    <span>
+      <WrapperComponent {...props} children={WrapperChildren} />
+      {childrenRender(path, children)}
+    </span>
+  )
+}
+
 class NestedRoute extends Component{
-
-  // render children Route
-  ChildrenRender = (path, childrens) => {
-    let result = []
-    let tempChildren = childrens.length
-        ? childrens
-        : [childrens]
-
-    tempChildren.map(child =>
-      result.push(
-        <Route
-          key={`nested-route-child-${Math.random()}`}
-          path={`${path}${child.props.path}`}
-          component={child.props.component}
-        />
-      )
-    )
-
-    return result
-  }
-
-  getCurrentChild = () => {
-    const { computedMatch, children, location, path } = this.props
-    const { isExact } = computedMatch
-    if(isExact){
-      return null
-    }else if(children.length){
-      const activeRoute = location.pathname.replace(path, '')
-      const activeChild = children.filter(ch => ch.props.path === activeRoute)[0]
-      if(activeChild.props.norender) return null
-      return activeChild
-    }else{
-      if(children.props.render) return null
-      return children
-    }
-  }
-
   // render the main Route
-  WrapperRender = () => {
-    const { component, children, path } = this.props
-    const WrapperComponent = component
-    const WrapperChildren = this.getCurrentChild()
-    return(
-      <div>
-        <WrapperComponent {...this.props} children={WrapperChildren} />
-        {this.ChildrenRender(path, children)}
-      </div>
-    )
-  }
+  Wrapper = () => WrapperRender(this.props)
 
   // return the result
   render(){
-    return <Route path={this.props.path} component={this.WrapperRender}/>
+    return <Route path={this.props.path} component={this.Wrapper}/>
   }
-
 }
 
-const SubRoute = props => {
+function SubRoute(props){
   const Component = props.component
   return <Component />
 }
