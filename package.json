@@ -2,6 +2,8 @@
   "name": "react-nested-route",
   "version": "0.0.1",
   "description": "Make nested route simple and reusable.",
+  "license": "MIT",
+  "repository": "binothman/react-nested-route",
   "main": "build/index.js",
   "peerDependencies": {
     "react": "^16.1.1"
@@ -15,7 +17,8 @@
   "author": {
     "name": "Mohamed Binothman",
     "email": "binothman.mo@gmail.com",
-    "twitter": "@mbocoder"
+    "twitter": "@mbocoder",
+    "url": "https://github.com/binothman"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -30,5 +33,17 @@
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "webpack": "^3.8.1"
-  }
+  },
+  "keywords": [
+    "info",
+    "npm",
+    "package",
+    "package.json",
+    "current",
+    "module",
+    "npm",
+    "information",
+    "version",
+    "author"
+  ]
 }
