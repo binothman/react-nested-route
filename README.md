@@ -19,6 +19,8 @@ $ yarn add react-nested-route
 
 ## Usage
 ```js
+import { NestedRoute, SubRoute } from 'react-nested-route'
+
 <NestedRoute path="/main" component={MainContainer}>
   <SubRoute path="/sub1" component={SubComponent1} norender />
   <SubRoute path="/sub3" component={SubComponent2} norender />
