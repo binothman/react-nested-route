@@ -28,12 +28,12 @@ import { NestedRoute, SubRoute } from 'react-nested-route'
   <SubRoute path="/sub3" component={SubComponent3} norender /> 
 </NestedRoute>
 
-/* URLs Examples
-* - http://yoursite/main
-* - http://yoursite/main/sub1
-* - http://yoursite/main/sub2
-* - http://yoursite/main/sub3
-*/
+// URLs Examples
+// - http://yoursite/main
+// - http://yoursite/main/sub1
+// - http://yoursite/main/sub2
+// - http://yoursite/main/sub3
+
 ```
 
 
