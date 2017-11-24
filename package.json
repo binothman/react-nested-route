@@ -1,6 +1,6 @@
 {
   "name": "react-nested-route",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Make nested route simple and reusable.",
   "license": "MIT",
   "repository": "binothman/react-nested-route",
@@ -33,15 +33,11 @@
     "webpack": "^3.8.1"
   },
   "keywords": [
-    "info",
-    "npm",
-    "package",
-    "package.json",
-    "current",
-    "module",
-    "npm",
-    "information",
-    "version",
-    "author"
+    "router",
+    "nested router",
+    "reactjs",
+    "react",
+    "react-nested-router",
+    "react-router"
   ]
 }
