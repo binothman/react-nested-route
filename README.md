@@ -5,6 +5,7 @@
 Make nested route simple and easy to use.
 This package helping you to create nested route in a simple way. render your sub-component directly when router URL call, just declare Parent and Childern router and will render when router open.
 
+> Use this package under [`<Switch>`][df1].
 
 ## Install via NPM
 
@@ -87,5 +88,66 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root'))
 ```
-* Use __`norender`__ if you will render the children component on wrapper component in some part of your component, otherwise the child component will render automaticaly. if your child component like Modal, Popup ..etc or any absolute component no need to use __`norender`__.
+## Use `norender`
+If you want to render children component without when Router URL call without put `props.children` in wrapper component use `norender` property in `SubRoute` .
 
+## Example usage
+```js
+import { NestedRoute, SubRoute } from './routers/utilities/NestedRoute'
+
+<NestedRoute path="/absolute" component={AbsoluteWrapper}>
+  <SubRoute path="/autorender" component={AbsoluteComp} autorender />
+</NestedRoute>
+```
+## Full Example of using `norender`
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
+import { NestedRoute, SubRoute } from './routers/utilities/NestedRoute'
+
+// some CSS style for absolute component
+const style = {
+  position: 'absolute',
+  background: 'rgba(0,0,0, 0.8)',
+  width: '100%',
+  color: '#fff',
+  textAlign: 'center',
+  height: '100%',
+  top: 0,
+}
+
+// example absolute component to use `autorender`
+const AbsoluteWrapper = () => (
+  <div>Absolute Wrapper</div>
+)
+const AbsoluteComp = () => (
+  <div style={style}>
+    <h3>Absolute Component</h3>
+    <Link to="/" style={{color: '#fff'}}>Back to App</Link>
+  </div>
+)
+
+{/* App main Component */}
+const App = () => (
+  <div>
+    <Link to="/absolute/autorender">Absolute Component</Link>
+  </div>
+)
+
+ReactDOM.render(
+  <Router>
+    <Switch>
+
+      <NestedRoute path="/absolute" component={AbsoluteWrapper}>
+        <SubRoute path="/autorender" component={AbsoluteComp} autorender />
+      </NestedRoute>
+
+      <Route path="/" component={App} />
+
+    </Switch>
+  </Router>,
+  document.getElementById('root'))
+```
+
+  [df1]: <https://reacttraining.com/react-router/web/api/Switch>
