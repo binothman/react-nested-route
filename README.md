@@ -89,7 +89,7 @@ ReactDOM.render(
   document.getElementById('root'))
 ```
 ## Use `autorender`
-If you want to render children component without when Router URL call without put `props.children` in wrapper component use `autorender` property in `SubRoute` .
+If you want to render children component when Router URL call without put `props.children` in wrapper component use `autorender` property in `SubRoute` .
 
 ## Example usage
 ```js
