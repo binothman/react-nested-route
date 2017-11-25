@@ -1,6 +1,6 @@
 {
   "name": "react-nested-route",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Make nested route simple and easy to use.",
   "license": "MIT",
   "repository": "binothman/react-nested-route",
