@@ -5,7 +5,9 @@
 Make nested route simple and easy to use.
 This package helping you to create nested route in a simple way. render your sub-component directly when router URL call, just declare Parent and Childern router and will render when router open.
 
-> Use this package under [`<Switch>`][df1].
+> Required [React Router v4.2.0][df1].
+
+> Use this package under [`<Switch>`][df2].
 
 ## Install via NPM
 
@@ -149,5 +151,5 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root'))
 ```
-
-  [df1]: <https://reacttraining.com/react-router/web/api/Switch>
+  [df1]: <https://github.com/ReactTraining/react-router>
+  [df2]: <https://reacttraining.com/react-router/web/api/Switch>
