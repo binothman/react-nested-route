@@ -8,13 +8,15 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 // render children Route
-function childrenRender (path, childrens){
+function childrenRender (path, props){
+  const { children } = props
   let result = []
-  let childrenArr = childrens.length
-      ? childrens
-      : [childrens]
+  let childrenArr = children.length
+      ? children
+      : [children]
 
-  childrenArr.map(child =>
+  childrenArr.map(child => {
+    if(!child.props.autorender) return false
     result.push(
       <Route
         key={`nested-route-child-${Math.random()}`}
@@ -22,7 +24,7 @@ function childrenRender (path, childrens){
         component={child.props.component}
       />
     )
-  )
+  })
 
   return result
 }
@@ -30,15 +32,17 @@ function childrenRender (path, childrens){
 function getCurrentChild(props){
   const { computedMatch, children, location, path } = props
   const { isExact } = computedMatch
+  const activeRoute = location.pathname.replace(path, '')
+
   if(isExact){
     return null
   }else if(children.length){
-    const activeRoute = location.pathname.replace(path, '')
     const activeChild = children.filter(ch => ch.props.path === activeRoute)[0]
-    if(activeChild.props.norender) return null
+    if(!activeChild || activeChild.props.autorender) return null
     return activeChild
   }else{
-    if(children.props.render) return null
+    const isChildPath = children.props.path === activeRoute ? true : false
+    if(!isChildPath || children.props.autorender) return null
     return children
   }
 }
@@ -47,10 +51,11 @@ function WrapperRender (props){
   const { component, children, path } = props
   const WrapperComponent = component
   const WrapperChildren = getCurrentChild(props)
+
   return(
     <span>
       <WrapperComponent {...props} children={WrapperChildren} />
-      {childrenRender(path, children)}
+      {childrenRender(path, props)}
     </span>
   )
 }
