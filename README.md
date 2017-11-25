@@ -23,9 +23,9 @@ import { NestedRoute, SubRoute } from 'react-nested-route'
 
 
 <NestedRoute path="/main" component={MainContainer}> 
-  <SubRoute path="/sub1" component={SubComponent1} norender /> 
-  <SubRoute path="/sub3" component={SubComponent2} norender /> 
-  <SubRoute path="/sub3" component={SubComponent3} norender /> 
+  <SubRoute path="/sub1" component={SubComponent1} /> 
+  <SubRoute path="/sub3" component={SubComponent2} /> 
+  <SubRoute path="/sub3" component={SubComponent3} /> 
 </NestedRoute>
 
 // URLs Examples
@@ -52,30 +52,33 @@ const User = ({children}) => (
     <div>
       <Link to="/user/profile">Profile</Link><br />
       <Link to="/user/settings">Settings</Link><br />
-      <Link to="/user/messages">Messages</Link>
+      <Link to="/user/messages">Messages</Link><br />
     </div>
 
     {/* child component render */}
-    <div>{children}</div>
+    <div>
+      <h2>Tab content</h2>
+      {children}
+    </div>
   </div>
 )
 
-{/* Some of Sub component */}
-const Profile = () => <div>User Profile Component</div>
+{/* Sub components */}
 const Settings = () => <div>User Settings Component</div>
+const Profile = () => <div>User Profile Component</div>
 const Messages = () => <div>User Messages Component</div>
 
-{/* Other Component */}
-const App = () => <div>App Component</div>
+{/* App main Component */}
+const App = () => <div><Link to="/user">User</Link></div>
 
 ReactDOM.render(
   <Router>
     <Switch>
 
       <NestedRoute path="/user" component={User}>
-        <SubRoute path="/settings" component={Settings} norender />
-        <SubRoute path="/profile" component={Profile} norender />
-        <SubRoute path="/messages" component={Messages} norender />
+        <SubRoute path="/settings" component={Settings} />
+        <SubRoute path="/profile" component={Profile} />
+        <SubRoute path="/messages" component={Messages}  />
       </NestedRoute>
 
       <Route path="/" component={App} />
