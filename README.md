@@ -88,8 +88,8 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root'))
 ```
-## Use `norender`
-If you want to render children component without when Router URL call without put `props.children` in wrapper component use `norender` property in `SubRoute` .
+## Use `autorender`
+If you want to render children component without when Router URL call without put `props.children` in wrapper component use `autorender` property in `SubRoute` .
 
 ## Example usage
 ```js
@@ -99,7 +99,7 @@ import { NestedRoute, SubRoute } from './routers/utilities/NestedRoute'
   <SubRoute path="/autorender" component={AbsoluteComp} autorender />
 </NestedRoute>
 ```
-## Full Example of using `norender`
+## Full Example of using `autorender`
 ```js
 import React from 'react'
 import ReactDOM from 'react-dom'
