@@ -1,6 +1,6 @@
 # react-nested-route
 
-[![Build Status](https://travis-ci.org/binothman/react-nested-route.svg?branch=master)](https://travis-ci.org/binothman/react-nested-route) [![npm (scoped)](https://img.shields.io/npm/v/@cycle/core.svg)](https://www.npmjs.com/package/react-nested-route)
+[![Build Status](https://travis-ci.org/binothman/react-nested-route.svg?branch=master)](https://travis-ci.org/binothman/react-nested-route) [![npm (scoped)](https://img.shields.io/npm/v/@cycle/core.svg)](https://www.npmjs.com/package/react-nested-route) [![Join the chat at https://gitter.im/rrag/react-stockcharts](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/react-nested-route/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 Make nested route simple and easy to use.
 This package helping you to create nested route in a simple way. render your sub-component directly when router URL call, just declare Parent and Childern router and will render when router open.
