@@ -103,11 +103,19 @@ If you want to render children component when Router URL call without put `props
 
 ## Example usage
 ```js
-import { NestedRoute, SubRoute } from './routers/utilities/NestedRoute'
+import { NestedRoute, SubRoute } from 'react-nested-route'
 
-<NestedRoute path="/absolute" component={AbsoluteWrapper}>
-  <SubRoute path="/autorender" component={AbsoluteComp} autorender />
-</NestedRoute>
+ReactDOM.render(
+  <Router>
+    <Switch>
+    
+      <NestedRoute path="/absolute" component={AbsoluteWrapper}>
+        <SubRoute path="/autorender" component={AbsoluteComp} autorender />
+      </NestedRoute>
+      
+    </Switch>
+  </Router>,
+  document.getElementById('root'))
 ```
 ## Full Example of using `autorender`
 ```js
