@@ -5,7 +5,7 @@
 Make nested route simple and easy to use.
 This package helping you to create nested route in a simple way. render your sub-component directly when router URL call, just declare Parent and Childern router and will render when router open.
 
-> Required [React Router v4.2.0][df1].
+> Required [React Router v4.2.2][df1].
 
 > Use this package under [`<Switch>`][df2].
 
@@ -25,11 +25,19 @@ $ yarn add react-nested-route
 import { NestedRoute, SubRoute } from 'react-nested-route'
 
 
-<NestedRoute path="/main" component={MainContainer}> 
-  <SubRoute path="/sub1" component={SubComponent1} /> 
-  <SubRoute path="/sub3" component={SubComponent2} /> 
-  <SubRoute path="/sub3" component={SubComponent3} /> 
-</NestedRoute>
+ReactDOM.render(
+  <Router>
+    <Switch>
+      
+      <NestedRoute path="/main" component={MainContainer}> 
+        <SubRoute path="/sub1" component={SubComponent1} /> 
+        <SubRoute path="/sub3" component={SubComponent2} /> 
+        <SubRoute path="/sub3" component={SubComponent3} /> 
+      </NestedRoute>
+      
+    </Switch>
+  </Router>,
+  document.getElementById('root'))
 
 // URLs Examples
 // - http://yoursite/main
@@ -66,12 +74,12 @@ const User = ({children}) => (
   </div>
 )
 
-{/* Sub components */}
+// Sub components
 const Settings = () => <div>User Settings Component</div>
 const Profile = () => <div>User Profile Component</div>
 const Messages = () => <div>User Messages Component</div>
 
-{/* App main Component */}
+// App main Component 
 const App = () => <div><Link to="/user">User</Link></div>
 
 ReactDOM.render(
@@ -106,7 +114,7 @@ import { NestedRoute, SubRoute } from './routers/utilities/NestedRoute'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
-import { NestedRoute, SubRoute } from './routers/utilities/NestedRoute'
+import { NestedRoute, SubRoute } from 'react-nested-route'
 
 // some CSS style for absolute component
 const style = {
@@ -130,7 +138,7 @@ const AbsoluteComp = () => (
   </div>
 )
 
-{/* App main Component */}
+// App main Component 
 const App = () => (
   <div>
     <Link to="/absolute/autorender">Absolute Component</Link>
