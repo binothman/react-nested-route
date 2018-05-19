@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "test": "webpack"
+    "test": "echo 'test'"
   },
   "author": {
     "name": "Mohamed Binothman",
