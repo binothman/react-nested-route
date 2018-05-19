@@ -9,7 +9,8 @@
     "react": "^16.1.1"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "test": "webpack"
   },
   "author": {
     "name": "Mohamed Binothman",
