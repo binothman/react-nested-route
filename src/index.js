@@ -1,81 +1,68 @@
 /*
-* NestedRoute: to run multiple components
-* - use this component under react-router-dom v4
-* @props: path: the url for route
-* @props: component: the component will run on that url
+* NestedRoute: to handle sub route with React Router v2
+* - use this component insted of Route if will pass childers with Route
+* @props: _Object_, pass all props that you can pass with Route from react-router-dom
+* @props, path: router path
+* @props, component: router component
 */
-import React, { Component } from 'react'
+
+import React from 'react'
 import { Route } from 'react-router-dom'
 
-// render children Route
-function childrenRender (path, props){
-  const { children } = props
-  let result = []
-  let childrenArr = children.length
-      ? children
-      : [children]
+const NestedRoute = props => {
+  /*
+  *  Handle rendering component and their childrend
+  *  @p: _Object_, props of parent Component
+  *  return: Route, with Component according to router path.
+  */
+  const parentComponent = p => {
+    const Component = props.component
+    const pathArr = p.location.pathname.split('/')
+    const child = getChildren(props.children, pathArr)
 
-  childrenArr.map(child => {
-    if(!child.props.autorender) return false
-    result.push(
-      <Route
-        key={`nested-route-child-${Math.random()}`}
-        path={`${path}${child.props.path}`}
-        component={child.props.component}
-      />
-    )
-  })
+    return (
+        <Route
+          key={Math.floor(Math.random() * 10000)}
+          exact={props.exact}
+          path={props.path}
+          render={rp =>
+            <Component {...rp}>
+              {renderChildren(child, props, rp)}
+            </Component>
+          } />
+      )
+  }
 
-  return result
+  return <Route path={props.path} component={parentComponent} />
 }
 
-function getCurrentChild(props){
-  const { computedMatch, children, location, path } = props
-  const { isExact } = computedMatch
-  const activeRoute = location.pathname.replace(path, '')
-
-  if(isExact){
-    return null
-  }else if(children.length){
-    const activeChild = children.filter(ch => ch.props.path === activeRoute)[0]
-    if(!activeChild || activeChild.props.autorender) return null
-    return activeChild
+const renderChildren = (child, parent) => {
+  if(!child) return
+  const Ch = child.props.component
+  if(child.props.children){
+    return <NestedRoute
+              {...child.props}
+              path={`${parent.path}/${child.props.path}`}
+              component={Ch} />
   }else{
-    const isChildPath = children.props.path === activeRoute ? true : false
-    if(!isChildPath || children.props.autorender) return null
-    return children
+    return <Route
+              {...child.props}
+              path={`${parent.path}/${child.props.path}`}
+              component={Ch} />
   }
 }
 
-function WrapperRender (props){
-  const { component, children, path } = props
-  const WrapperComponent = component
-  const WrapperChildren = getCurrentChild(props)
-
-  return(
-    <span>
-      <WrapperComponent {...props} children={WrapperChildren} />
-      {childrenRender(path, props)}
-    </span>
-  )
+/*
+* Handle childer of Component
+* @ch: _Object_, React Element
+* @pathArr: _Array_, list of path routers
+* return: React Element, accourding to current router or false
+*/
+const getChildren = (ch, pathArr) => {
+  if(!ch) return false
+  if(ch.length) return ch.filter(i => pathArr.includes(i.props.path)).slice(-1)[0]
+  if(pathArr.includes(ch.props.path)) return ch
+  return false
 }
 
-class NestedRoute extends Component{
-  // render the main Route
-  Wrapper = () => WrapperRender(this.props)
-
-  // return the result
-  render(){
-    return <Route path={this.props.path} component={this.Wrapper}/>
-  }
-}
-
-function SubRoute(props){
-  const Component = props.component
-  return <Component />
-}
-
-export {
-  NestedRoute,
-  SubRoute
-}
+export default NestedRoute

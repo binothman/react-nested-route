@@ -14,8 +14,7 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         exclude: /(node_modules|bower_components|build)/,
         query: {
-          presets: ['react', 'es2015', 'env'],
-          plugins: ['transform-class-properties']
+          presets: ['react', 'es2015'],
         }
 
       }
